@@ -1,15 +1,21 @@
-const DoneListBox = ({ list, condition }) => {
-    let doneList = list.filter((obj) => obj.isDone === condition);
+import ButtonBox from "./ButtonBox";
+import { useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
+
+const DoneListBox = () => {
+
+    const condition = true; 
+    const data = useContext(TodoContext);
+    const doneList = data.list.filter((obj) => obj.isDone === condition);
   
     return (
       <div>
-        {workingList.map((obj) => {
+        {doneList.map((obj) => {
           return (
             <div>
               <h2>{obj.title}</h2>
               <p>{obj.content}</p>
-              <button>삭제</button>
-              <button>취소</button>
+              <ButtonBox ids={obj.id} condition={condition} />
             </div>
           );
         })}

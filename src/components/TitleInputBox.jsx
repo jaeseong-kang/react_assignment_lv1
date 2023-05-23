@@ -1,9 +1,15 @@
-const TitleInputBox = ({todo,setTodo}) => {
+import { useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
+
+const TitleInputBox = () => {
+  
+  const data = useContext(TodoContext);
+
   const onChangeHandler = () => {
     let inputText = document.getElementById("titleInputBox").value;
-    let newTodo = {...todo};
+    let newTodo = {...data.todo};
     newTodo["title"] = inputText;
-    setTodo(newTodo);
+    data.setTodo(newTodo);
   };
   return <input id="titleInputBox" onChange={onChangeHandler} />;
 };

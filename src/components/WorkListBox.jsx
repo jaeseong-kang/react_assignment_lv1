@@ -1,5 +1,12 @@
-const WorkListBox = ({ list, condition }) => {
-  let workingList = list.filter((obj) => obj.isDone === condition);
+import ButtonBox from "./ButtonBox";
+import { useContext } from "react";
+import { TodoContext } from "../context/TodoContext";
+
+const WorkListBox = () => {
+  
+  const condition = false;
+  const data = useContext(TodoContext);
+  const workingList = data.list.filter((obj) => obj.isDone === condition);
 
   return (
     <div>
@@ -8,8 +15,7 @@ const WorkListBox = ({ list, condition }) => {
           <div>
             <h2>{obj.title}</h2>
             <p>{obj.content}</p>
-            <button>삭제</button>
-            <button>완료</button>
+            <ButtonBox ids={obj.id} condition={condition} />
           </div>
         );
       })}

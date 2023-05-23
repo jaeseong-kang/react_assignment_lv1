@@ -1,10 +1,8 @@
 import { useState } from "react";
-import TitleInputBox from "./components/TitleInputBox";
-import ContentInputBox from "./components/ContentInputBox";
 import "./App.css";
-import RegisterButton from "./components/RegisterButton";
-import WorkListBox from "./components/WorkListBox";
-import DoneListBox from "./components/DoneListBox";
+
+import {TitleInputBox, ContentInputBox, RegisterButton, DoneListBox, WorkListBox} from "./components"
+import { TodoContext } from "./context/TodoContext";
 
 function App() {
   const [todo, setTodo] = useState({
@@ -17,27 +15,35 @@ function App() {
 
   return (
     <div className="App">
+
       <div className="headline">
         <span>My Todo List</span>
         <span>React</span>
       </div>
-      <div className="inputBlock">
-        <span className="titleInput">
-          제목 <TitleInputBox todo={todo} setTodo={setTodo} />
-        </span>
-        <span className="contentInput">
-          내용 <ContentInputBox todo={todo} setTodo={setTodo} />
-        </span>
-        <RegisterButton list={list} setList={setList} todo={todo} />
-      </div>
-      <div className="workingList">
-        <p>Working...</p>
-        <WorkListBox list={list} condition={false} />
-      </div>
-      <div className="doneList">
-        <p>Done...!</p>
-        <DoneListBox list={list} condition={true} />
-      </div>
+      
+      <TodoContext.Provider value={{todo,setTodo,list,setList}}>
+
+        <div className="inputBlock">
+          <span className="titleInput">
+            제목 <TitleInputBox />
+          </span>
+          <span className="contentInput">
+            내용 <ContentInputBox />
+          </span>
+            <RegisterButton />
+        </div>
+
+        <div className="workingList">
+            <p>Working...</p>
+            <WorkListBox />
+        </div>
+
+        <div className="doneList">
+            <p>Done...!</p>
+            <DoneListBox />
+        </div>
+
+      </TodoContext.Provider>
     </div>
   );
 }
