@@ -32,13 +32,38 @@ const ButtonBox = ({  ids, condition }) => {
     );
   };
 
+  const btnBlock = {
+    display: "flex",
+    gap: "10px"
+  }
+
+  const deleteBtnStyle = {
+    border: "2px solid red",
+    borderRadius: "10px",
+    backgroundColor: "white",
+    width: "130px",
+    height: "35px",
+    fontSize: "12px",
+    padding: "1px 10px"
+  };
+
+  const comCanBtnStyle = {
+    border: "2px solid green",
+    borderRadius: "10px",
+    backgroundColor: "white",
+    width: "130px",
+    height: "35px",
+    fontSize: "12px",
+    padding: "1px 10px"
+  };
+
   return (
-    <div>
-      <button onClick={deleteContent}>삭제</button>
+    <div style={btnBlock}>
+      <button style={deleteBtnStyle} onClick={deleteContent}>삭제</button>
       {condition === false ? (
-        <button onClick={completeContent}>완료</button>
+        <button style={comCanBtnStyle} onClick={completeContent}>완료</button>
       ) : (
-        <button onClick={cancelContent}>취소</button>
+        <button style={comCanBtnStyle} onClick={cancelContent}>취소</button>
       )}
     </div>
   );

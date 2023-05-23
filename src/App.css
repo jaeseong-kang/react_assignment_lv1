@@ -1,4 +1,69 @@
-.App {
-  width: 1200px;
-  text-align: center;
+.Layout {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 1200px;
+  min-width: 800px;
+  gap: 20px;
+  margin: auto;
+}
+
+.headline {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 2px solid #dcdcdc;
+}
+
+.form {
+  display: flex;
+  justify-content: space-between;
+
+  padding: 30px;
+
+  background-color: #dcdcdc;
+  border-radius: 10px;
+
+  font-weight: bold;
+}
+
+.inputBlock {
+  display: flex;
+  justify-content: space-around;
+  gap: 15px;
+  height: 36px;
+}
+
+.titleInput {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  height: 36px;
+}
+
+.contentInput {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  height: 36px;
+}
+
+.workingList {
+  display: flex;
+  flex-direction: column;
+}
+
+.workingList > p {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.doneList {
+  display: flex;
+  flex-direction: column;
+}
+
+.doneList > p {
+  font-size: 30px;
+  font-weight: bold;
 }

@@ -2,6 +2,15 @@ import { useContext } from "react";
 import { TodoContext } from "../context/TodoContext";
 
 const ContentInputBox = () => {
+
+  const style = {
+    height: "36px",
+    width: "250px",
+    borderRadius: "10px",
+    border: "none",
+    fontSize: "16px",
+    textIndent: "1em"
+  }
   
     const data = useContext(TodoContext);
 
@@ -11,7 +20,7 @@ const ContentInputBox = () => {
         newTodo["content"] = inputText;
         data.setTodo(newTodo);
       };
-      return <input id="contentInputBox" onChange={onChangeHandler} />;
+      return <input style={style} id="contentInputBox" onChange={onChangeHandler} />;
     };
 
 export default ContentInputBox;
