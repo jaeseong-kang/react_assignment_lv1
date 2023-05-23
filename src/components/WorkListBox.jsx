@@ -1,4 +1,4 @@
-const ListBox = ({ list, condition }) => {
+const WorkListBox = ({ list, condition }) => {
   let workingList = list.filter((obj) => obj.isDone === condition);
 
   return (
@@ -17,4 +17,4 @@ const ListBox = ({ list, condition }) => {
   );
 };
 
-export default ListBox;
+export default WorkListBox;

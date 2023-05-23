@@ -3,7 +3,8 @@ import TitleInputBox from "./components/TitleInputBox";
 import ContentInputBox from "./components/ContentInputBox";
 import "./App.css";
 import RegisterButton from "./components/RegisterButton";
-import ListBox from "./components/ListBox";
+import WorkListBox from "./components/WorkListBox";
+import DoneListBox from "./components/DoneListBox";
 
 function App() {
   const [todo, setTodo] = useState({
@@ -31,11 +32,11 @@ function App() {
       </div>
       <div className="workingList">
         <p>Working...</p>
-        <ListBox list={list} condition={false} />
+        <WorkListBox list={list} condition={false} />
       </div>
       <div className="doneList">
         <p>Done...!</p>
-        <ListBox list={list} condition={true} />
+        <DoneListBox list={list} condition={true} />
       </div>
     </div>
   );
