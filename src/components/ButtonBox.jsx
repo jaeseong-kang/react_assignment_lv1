@@ -1,35 +1,37 @@
-import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useSelector, useDispatch } from "react-redux";
+import { changeList } from "../redux/modules/list";
 
-const ButtonBox = ({  ids, condition }) => {
 
-  const data = useContext(TodoContext);
+
+const ButtonBox = ({ ids, condition }) => {
+
+
+  const dispatch = useDispatch();
+  const list = useSelector((state) => state.list);
 
   const deleteContent = () => {
-    const newList = data.list.filter((obj) => obj.id !== ids);
-    data.setList(newList);
+    const newList = list.filter((obj) => obj.id !== ids);
+    dispatch(changeList(newList));
   };
 
   const completeContent = () => {
-    data.setList((list) =>
-      list.map((item) => {
+    const newList = list.map((item) => {
         if (item.id === ids) {
           return { ...item, isDone: true };
         }
         return item;
-      })
-    );
+      });
+    dispatch(changeList(newList));
   };
 
   const cancelContent = () => {
-    data.setList((list) =>
-      list.map((item) => {
+    const newList = list.map((item) => {
         if (item.id === ids) {
           return { ...item, isDone: false };
         }
         return item;
-      })
-    );
+      });
+    dispatch(changeList(newList));
   };
 
   const btnBlock = {

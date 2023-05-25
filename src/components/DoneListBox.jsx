@@ -1,12 +1,12 @@
 import ButtonBox from "./ButtonBox";
-import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useSelector } from "react-redux";
+
 
 const DoneListBox = () => {
 
     const condition = true; 
-    const data = useContext(TodoContext);
-    const doneList = data.list.filter((obj) => obj.isDone === condition);
+    const list = useSelector((state) => state.list);
+    const doneList = list.filter((obj) => obj.isDone === condition);
 
     const listStyle = {
       display:"flex",

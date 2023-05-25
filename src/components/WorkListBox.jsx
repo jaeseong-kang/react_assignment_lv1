@@ -1,12 +1,11 @@
 import ButtonBox from "./ButtonBox";
-import { useContext } from "react";
-import { TodoContext } from "../context/TodoContext";
+import { useSelector } from "react-redux";
 
 const WorkListBox = () => {
   
   const condition = false;
-  const data = useContext(TodoContext);
-  const workingList = data.list.filter((obj) => obj.isDone === condition);
+  const list = useSelector((state) => state.list);
+  const workingList = list.filter((obj) => obj.isDone === condition);
 
   const listStyle = {
     display:"flex",
