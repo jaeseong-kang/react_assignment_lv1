@@ -1,7 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { __getListDetail, changeDone } from "../redux/modules/listSlice";
+import { changeDone } from "../redux/modules/listSlice";
 
 
 const layoutStyle = {
