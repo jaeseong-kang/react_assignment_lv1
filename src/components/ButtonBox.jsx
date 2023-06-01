@@ -1,5 +1,5 @@
-import { useSelector, useDispatch } from "react-redux";
-import { changeList } from "../redux/modules/list";
+import { useDispatch } from "react-redux";
+import { deleteList, changeDone } from "../redux/modules/listSlice";
 
 
 
@@ -7,31 +7,13 @@ const ButtonBox = ({ ids, condition }) => {
 
 
   const dispatch = useDispatch();
-  const list = useSelector((state) => state.list);
-
+  
   const deleteContent = () => {
-    const newList = list.filter((obj) => obj.id !== ids);
-    dispatch(changeList(newList));
+    dispatch(deleteList(ids));
   };
 
-  const completeContent = () => {
-    const newList = list.map((item) => {
-        if (item.id === ids) {
-          return { ...item, isDone: true };
-        }
-        return item;
-      });
-    dispatch(changeList(newList));
-  };
-
-  const cancelContent = () => {
-    const newList = list.map((item) => {
-        if (item.id === ids) {
-          return { ...item, isDone: false };
-        }
-        return item;
-      });
-    dispatch(changeList(newList));
+  const doneChange = () => {
+    dispatch(changeDone(ids));
   };
 
   const btnBlock = {
@@ -63,9 +45,9 @@ const ButtonBox = ({ ids, condition }) => {
     <div style={btnBlock}>
       <button style={deleteBtnStyle} onClick={deleteContent}>삭제</button>
       {condition === false ? (
-        <button style={comCanBtnStyle} onClick={completeContent}>완료</button>
+        <button style={comCanBtnStyle} onClick={doneChange}>완료</button>
       ) : (
-        <button style={comCanBtnStyle} onClick={cancelContent}>취소</button>
+        <button style={comCanBtnStyle} onClick={doneChange}>취소</button>
       )}
     </div>
   );

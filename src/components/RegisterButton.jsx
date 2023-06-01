@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { appendList } from "../redux/modules/list";
-import { plusOneId } from "../redux/modules/todo";
+import { appendList } from "../redux/modules/listSlice";
+import { plusOneId } from "../redux/modules/todoSlice";
 
 const RegisterButton = () => {
 
@@ -13,9 +13,10 @@ const RegisterButton = () => {
   };
 
   const dispatch = useDispatch();
-  const todo = useSelector((state) => state.todo);
+  const todo = useSelector((state) => state.todo.todo);
 
   const registerButtonhandler = () => {
+    console.log(todo);
     dispatch(appendList(todo));
     dispatch(plusOneId());
   };

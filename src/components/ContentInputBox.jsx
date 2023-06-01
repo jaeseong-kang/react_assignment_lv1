@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { changeContent } from "../redux/modules/todo";
+import { changeContent } from "../redux/modules/todoSlice";
 
 const ContentInputBox = () => {
   const style = {
@@ -18,7 +18,7 @@ const ContentInputBox = () => {
     dispatch(changeContent(inputText));
   };
   return (
-    <input style={style} id="contentInputBox" onChange={onChangeHandler} />
+    <input style={style} type="text" id="contentInputBox" onChange={onChangeHandler} />
   );
 };
 

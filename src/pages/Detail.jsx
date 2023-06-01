@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { __getListDetail, changeDone } from "../redux/modules/listSlice";
 
 
 const layoutStyle = {
@@ -54,11 +55,41 @@ const mainStyle = {
     marginLeft: "24px"
 }
 
+const btnsStyle = {
+    display: "flex",
+    gap: "5px"
+}
+
+const completeBtnStyle = {
+    border: "1px solid green",
+    height: "40px",
+    width: "120px",
+    backgroundColor: "rgb(255, 255, 255)",
+    borderRadius: "12px",
+    cursor: "pointer",
+    color: "green",
+}
+
+const cancelBtnStyle = {
+    border: "1px solid red",
+    height: "40px",
+    width: "120px",
+    backgroundColor: "rgb(255, 255, 255)",
+    borderRadius: "12px",
+    cursor: "pointer",
+    color: "red",
+}
+
 const Detail = () => {
+  const dispatch = useDispatch();
   const param = useParams();
   const navigate = useNavigate();
-  const list = useSelector((state) => state.list);
+  const list = useSelector((state) => state.list.list);
   const detail = list.find((detail) => detail.id === parseInt(param.id));
+
+  const doneChange = () => {
+    dispatch(changeDone(detail.id));
+  };
 
   return ( 
     <div style={{display: "block"}}>
@@ -66,7 +97,11 @@ const Detail = () => {
             <div style={detailCardStyle}>
                 <div style={cardHeaderStyle}>
                     <span>{`ID :${param.id}`}</span>
-                    <button onClick={() => navigate(-1)} style={btnStyle}>이전으로</button>
+                    <div style={btnsStyle}>
+                        {detail.isDone === false ? (<button style={completeBtnStyle} onClick={doneChange}>완료</button>) : (<button style={cancelBtnStyle} onClick={doneChange}>취소</button>) }
+                        <button onClick={() => navigate(`/edit/${param.id}`)} style={btnStyle}>수정하기</button>
+                        <button onClick={() => navigate(-1)} style={btnStyle}>이전으로</button>
+                    </div>
                 </div>
                 <h1 style={h1Style}>{detail.title}</h1>
                 <main style={mainStyle}>{detail.content}</main>

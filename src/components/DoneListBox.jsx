@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const DoneListBox = () => {
   const condition = true;
-  const list = useSelector((state) => state.list);
+  const list = useSelector((state) => state.list.list);
   const doneList = list.filter((obj) => obj.isDone === condition);
 
   const listStyle = {
@@ -37,7 +37,7 @@ const DoneListBox = () => {
     <div style={listStyle}>
       {doneList.map((obj) => {
         return (
-          <div style={cardStyle}>
+          <div key={obj.id} style={cardStyle}>
             <Link to={`/detail/${obj.id}`}>
               <span style={{ cursor: "pointer" }}>상세보기</span>
             </Link>

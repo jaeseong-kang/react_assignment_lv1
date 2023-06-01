@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { changeTitle } from "../redux/modules/todo";
+import { changeTitle } from "../redux/modules/todoSlice";
 
 const TitleInputBox = () => {
   const style = {
@@ -18,7 +18,7 @@ const TitleInputBox = () => {
     let inputText = document.getElementById("titleInputBox").value;
     dispatch(changeTitle(inputText));
   };
-  return <input style={style} id="titleInputBox" onChange={onChangeHandler} />;
+  return <input style={style} type="text" id="titleInputBox" onChange={onChangeHandler} />;
 };
 
 export default TitleInputBox;
